@@ -58,7 +58,7 @@ services:
     networks:
       - roboshop
   payment:
-    image: payment
+    image: payment:v1
     container_name: payment
     networks:
       - roboshop
