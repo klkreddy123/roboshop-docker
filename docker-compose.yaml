@@ -11,9 +11,9 @@ services:
     image: catalogue:v1
     container_name: catalogue
     networks:
-    - roboshop
+      - roboshop
     depends_on:
-    - mongodb
+      - mongodb
   redis:
     image: redis:latest
     container_name: redis
@@ -31,10 +31,10 @@ services:
     image: web:v1
     container_name: web
     networks:
-    - roboshop
+      - roboshop
     ports:
-    - "80:80"
+      - "80:80"
     depends_on:
-    - catalogue
-    - user
-    - cart
+      - catalogue
+      - user
+      - cart
