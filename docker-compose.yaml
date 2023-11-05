@@ -41,6 +41,31 @@ services:
     container_name: mysql
     networks:
       - roboshop
+  shipping:
+    image: shipping:v1
+    container_name: shipping
+    networks:
+      - roboshop
+    depends_on:
+      - cart
+      - mysql
+  rabbitmq:
+    image: rabbitmq
+    container_name: rabbitmq
+    environment:
+      - RABBITMQ_DEFAULT_USER=roboshop
+      - RABBITMQ_DEFAULT_PASSOWORD=roboshop123
+    networks:
+      - roboshop
+  payment:
+    image: payment
+    container_name: payment
+    networks:
+      - roboshop
+    depends_on:
+      - cart
+      - user
+      - rabbitmq
   web:
     image: web:v1
     container_name: web
@@ -52,3 +77,5 @@ services:
       - catalogue
       - user
       - cart
+      - shipping
+      - payment
